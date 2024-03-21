@@ -2,8 +2,19 @@ import React, { useState, useEffect } from "react";
 import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 
 const Stopwatch: React.FC = () => {
-  const [time, setTime] = useState(0);
-  const [isRunning, setIsRunning] = useState(false);
+  const [time, setTime] = useState(() => {
+    const storedTime = localStorage.getItem("stopwatchTime");
+    return storedTime ? parseInt(storedTime, 10) : 0;
+  });
+  const [isRunning, setIsRunning] = useState(() => {
+    const storedIsRunning = localStorage.getItem("stopwatchIsRunning");
+    return storedIsRunning ? JSON.parse(storedIsRunning) : false;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("stopwatchTime", time.toString());
+    localStorage.setItem("stopwatchIsRunning", JSON.stringify(isRunning));
+  }, [time, isRunning]);
 
   useEffect(() => {
     let interval: number;
