@@ -10,6 +10,7 @@ import Stopwatch from "../components/Stopwatch";
 import QuoteGenerator from "../components/QuoteGenerator";
 import Scratchpad from "../components/Scratchpad";
 import MusicPlayer from "../components/MusicPlayer";
+import TicTacToe from "../components/TicTacToe";
 
 interface Todo {
   id: number;
@@ -120,6 +121,9 @@ const Index = () => {
         </Card>
         <Card p={6}>
           <Scratchpad />
+        </Card>
+        <Card p={6}>
+          <TicTacToe />
         </Card>
       </SimpleGrid>
     </Flex>
