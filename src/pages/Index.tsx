@@ -9,6 +9,7 @@ import Spinner from "../components/Spinner";
 import Stopwatch from "../components/Stopwatch";
 import QuoteGenerator from "../components/QuoteGenerator";
 import Scratchpad from "../components/Scratchpad";
+import MusicPlayer from "../components/MusicPlayer";
 
 interface Todo {
   id: number;
@@ -113,6 +114,9 @@ const Index = () => {
         </Card>
         <Card p={6}>
           <RandomJokeGenerator />
+        </Card>
+        <Card p={6}>
+          <MusicPlayer />
         </Card>
         <Card p={6}>
           <Scratchpad />
