@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Box, Heading, Input, Button, List, ListItem, IconButton, Flex, Spacer, useToast, Checkbox } from "@chakra-ui/react";
 import { FaPlus, FaTrash } from "react-icons/fa";
+import Sparkles from '../components/Sparkles';
 
 interface Todo {
   id: number;
@@ -54,7 +55,9 @@ const Index = () => {
 
   return (
     <Box maxWidth="400px" margin="auto" mt={8}>
-      <Heading mb={8}>Todo App</Heading>
+      <Heading mb={8}>
+        Todo App <Sparkles />
+      </Heading>
       <Flex mb={4}>
         <Input value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Enter a todo" mr={2} />
         <Button onClick={handleAddTodo} colorScheme="blue" px={8}>
