@@ -8,7 +8,6 @@ import PomodoroTimer from "../components/PomodoroTimer";
 import Spinner from "../components/Spinner";
 import Stopwatch from "../components/Stopwatch";
 import QuoteGenerator from "../components/QuoteGenerator";
-import WeatherCard from "../components/WeatherCard";
 
 interface Todo {
   id: number;
@@ -113,9 +112,6 @@ const Index = () => {
         </Card>
         <Card p={6}>
           <RandomJokeGenerator />
-        </Card>
-        <Card p={6}>
-          <WeatherCard />
         </Card>
       </SimpleGrid>
     </Flex>
