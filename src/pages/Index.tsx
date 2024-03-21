@@ -1,15 +1,26 @@
 import { useState } from "react";
-import { Box, Heading, Input, Button, List, ListItem, IconButton, Flex, Spacer, useToast } from "@chakra-ui/react";
+import { Box, Heading, Input, Button, List, ListItem, IconButton, Flex, Spacer, useToast, Checkbox } from "@chakra-ui/react";
 import { FaPlus, FaTrash } from "react-icons/fa";
 
 interface Todo {
   id: number;
   text: string;
+  completed: boolean;
 }
 
 const Index = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [inputValue, setInputValue] = useState("");
+
+  const handleToggleTodo = (id: number) => {
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, completed: !todo.completed };
+      }
+      return todo;
+    });
+    setTodos(updatedTodos);
+  };
   const toast = useToast();
 
   const handleAddTodo = () => {
@@ -17,6 +28,7 @@ const Index = () => {
       const newTodo: Todo = {
         id: Date.now(),
         text: inputValue,
+        completed: false,
       };
       setTodos([...todos, newTodo]);
       setInputValue("");
@@ -53,7 +65,8 @@ const Index = () => {
         {todos.map((todo) => (
           <ListItem key={todo.id}>
             <Flex align="center">
-              <Box>{todo.text}</Box>
+              <Checkbox isChecked={todo.completed} onChange={() => handleToggleTodo(todo.id)} mr={2} />
+              <Box textDecoration={todo.completed ? "line-through" : "none"}>{todo.text}</Box>
               <Spacer />
               <IconButton icon={<FaTrash />} aria-label="Delete todo" onClick={() => handleDeleteTodo(todo.id)} colorScheme="red" size="sm" />
             </Flex>
