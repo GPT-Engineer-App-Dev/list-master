@@ -1,39 +1,63 @@
-import React, { useState } from "react";
-import { Box, Button, Grid, Heading } from "@chakra-ui/react";
+import { useState } from "react";
+import { Box, Button, Grid, Text } from "@chakra-ui/react";
 
 const TicTacToe: React.FC = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
-  const [player, setPlayer] = useState("X");
+  const [isXNext, setIsXNext] = useState(true);
+  const winner = calculateWinner(board);
 
   const handleClick = (index: number) => {
-    if (board[index] === null) {
-      const newBoard = [...board];
-      newBoard[index] = player;
-      setBoard(newBoard);
-      setPlayer(player === "X" ? "O" : "X");
-    }
+    if (board[index] || winner) return;
+
+    const newBoard = board.slice();
+    newBoard[index] = isXNext ? "X" : "O";
+    setBoard(newBoard);
+    setIsXNext(!isXNext);
   };
 
-  const resetGame = () => {
-    setBoard(Array(9).fill(null));
-    setPlayer("X");
-  };
+  const renderSquare = (index: number) => (
+    <Button h="50px" w="50px" onClick={() => handleClick(index)}>
+      {board[index]}
+    </Button>
+  );
+
+  function calculateWinner(squares: Array<string | null>) {
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+    for (let i = 0; i < lines.length; i++) {
+      const [a, b, c] = lines[i];
+      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+        return squares[a];
+      }
+    }
+    return null;
+  }
 
   return (
     <Box>
-      <Heading size="md" mb={4}>
+      <Text fontSize="xl" mb={4}>
         Tic Tac Toe
-      </Heading>
+      </Text>
       <Grid templateColumns="repeat(3, 1fr)" gap={2}>
-        {board.map((cell, index) => (
-          <Button key={index} onClick={() => handleClick(index)} height="80px">
-            {cell}
-          </Button>
-        ))}
+        {Array(9)
+          .fill(null)
+          .map((_, index) => (
+            <Box key={index}>{renderSquare(index)}</Box>
+          ))}
       </Grid>
-      <Button mt={4} onClick={resetGame}>
-        Reset
-      </Button>
+      {winner && (
+        <Text mt={4} fontWeight="bold">
+          Winner: {winner}
+        </Text>
+      )}
     </Box>
   );
 };
