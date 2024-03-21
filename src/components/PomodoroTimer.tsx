@@ -3,10 +3,17 @@ import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 
 const PomodoroTimer: React.FC = () => {
   const [duration] = useState(25 * 60);
-  const [remainingTime, setRemainingTime] = useState(() => {
-    const storedRemainingTime = localStorage.getItem("remainingTime");
-    return storedRemainingTime ? parseInt(storedRemainingTime, 10) : duration;
-  });
+  const [remainingTime, setRemainingTime] = useState(duration);
+
+  useEffect(() => {
+    const storedStartTime = localStorage.getItem("startTime");
+    if (storedStartTime) {
+      const startTime = parseInt(storedStartTime, 10);
+      const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+      const remainingTime = Math.max(duration - elapsedTime, 0);
+      setRemainingTime(remainingTime);
+    }
+  }, []);
   const [isRunning, setIsRunning] = useState(() => {
     const storedIsRunning = localStorage.getItem("isRunning");
     return storedIsRunning ? JSON.parse(storedIsRunning) : false;
@@ -31,6 +38,7 @@ const PomodoroTimer: React.FC = () => {
 
   const startTimer = () => {
     setIsRunning(true);
+    localStorage.setItem("startTime", Date.now().toString());
   };
 
   const pauseTimer = () => {
@@ -40,6 +48,7 @@ const PomodoroTimer: React.FC = () => {
   const resetTimer = () => {
     setRemainingTime(duration);
     setIsRunning(false);
+    localStorage.removeItem("startTime");
   };
 
   const formatTime = (time: number) => {
