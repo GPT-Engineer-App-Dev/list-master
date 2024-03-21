@@ -88,10 +88,10 @@ const Index = () => {
         <Card p={8} width="100%">
           <PomodoroTimer />
         </Card>
+        <Card p={8} width="100%">
+          <Spinner />
+        </Card>
       </VStack>
-      <Card p={8} width="100%" maxWidth="400px">
-        <Spinner />
-      </Card>
     </Flex>
   );
 };
