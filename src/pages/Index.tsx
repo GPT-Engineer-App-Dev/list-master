@@ -6,6 +6,7 @@ import Sparkles from "../components/Sparkles";
 import PomodoroTimer from "../components/PomodoroTimer";
 import Spinner from "../components/Spinner";
 import Stopwatch from "../components/Stopwatch";
+import QuoteGenerator from "../components/QuoteGenerator";
 
 interface Todo {
   id: number;
@@ -104,6 +105,9 @@ const Index = () => {
         </Card>
         <Card p={8} width="100%">
           <Stopwatch />
+        </Card>
+        <Card p={8} width="100%">
+          <QuoteGenerator />
         </Card>
       </VStack>
     </Flex>
