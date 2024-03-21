@@ -13,7 +13,10 @@ interface Todo {
 }
 
 const Index = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<Todo[]>(() => {
+    const storedTodos = localStorage.getItem("todos");
+    return storedTodos ? JSON.parse(storedTodos) : [];
+  });
   const [inputValue, setInputValue] = useState("");
 
   const handleToggleTodo = (id: number) => {
@@ -24,6 +27,7 @@ const Index = () => {
       return todo;
     });
     setTodos(updatedTodos);
+    localStorage.setItem("todos", JSON.stringify(updatedTodos));
   };
   const toast = useToast();
 
@@ -34,7 +38,9 @@ const Index = () => {
         text: inputValue,
         completed: false,
       };
-      setTodos([...todos, newTodo]);
+      const updatedTodos = [...todos, newTodo];
+      setTodos(updatedTodos);
+      localStorage.setItem("todos", JSON.stringify(updatedTodos));
       setInputValue("");
       toast({
         title: "Todo added.",
@@ -48,6 +54,7 @@ const Index = () => {
   const handleDeleteTodo = (id: number) => {
     const updatedTodos = todos.filter((todo) => todo.id !== id);
     setTodos(updatedTodos);
+    localStorage.setItem("todos", JSON.stringify(updatedTodos));
     toast({
       title: "Todo deleted.",
       status: "info",
