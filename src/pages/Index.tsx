@@ -3,6 +3,7 @@ import { Box, Heading, Input, Button, List, ListItem, IconButton, Flex, Spacer, 
 import { FaPlus, FaTrash } from "react-icons/fa";
 import React from "react";
 import Sparkles from "../components/Sparkles";
+import RandomJokeGenerator from "../components/RandomJokeGenerator";
 import PomodoroTimer from "../components/PomodoroTimer";
 import Spinner from "../components/Spinner";
 import Stopwatch from "../components/Stopwatch";
@@ -108,6 +109,9 @@ const Index = () => {
         </Card>
         <Card p={6}>
           <QuoteGenerator />
+        </Card>
+        <Card p={6}>
+          <RandomJokeGenerator />
         </Card>
       </SimpleGrid>
     </Flex>
