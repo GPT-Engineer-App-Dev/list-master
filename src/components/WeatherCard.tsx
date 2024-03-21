@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Box, Heading, Text } from "@chakra-ui/react";
 
 interface WeatherData {
-  name: string;
-  main: {
-    temp: number;
+  location: {
+    name: string;
   };
-  weather: {
-    description: string;
-  }[];
+  current: {
+    temp_c: number;
+    condition: {
+      text: string;
+    };
+  };
 }
 
 const WeatherCard: React.FC = () => {
@@ -23,8 +25,8 @@ const WeatherCard: React.FC = () => {
         });
 
         const { latitude, longitude } = position.coords;
-        const apiKey = "YOUR_API_KEY_HERE";
-        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+        const apiKey = "YOUR_WEATHERAPI_KEY_HERE";
+        const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${latitude},${longitude}`;
 
         const response = await fetch(apiUrl);
         const data: WeatherData = await response.json();
@@ -51,9 +53,9 @@ const WeatherCard: React.FC = () => {
       <Heading size="md" mb={4}>
         Current Weather
       </Heading>
-      <Text>Location: {weatherData.name}</Text>
-      <Text>Temperature: {weatherData.main.temp}°C</Text>
-      <Text>Condition: {weatherData.weather[0].description}</Text>
+      <Text>Location: {weatherData.location.name}</Text>
+      <Text>Temperature: {weatherData.current.temp_c}°C</Text>
+      <Text>Condition: {weatherData.current.condition.text}</Text>
     </Box>
   );
 };
