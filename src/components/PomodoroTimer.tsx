@@ -3,8 +3,19 @@ import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 
 const PomodoroTimer: React.FC = () => {
   const [duration] = useState(25 * 60);
-  const [remainingTime, setRemainingTime] = useState(duration);
-  const [isRunning, setIsRunning] = useState(false);
+  const [remainingTime, setRemainingTime] = useState(() => {
+    const storedRemainingTime = localStorage.getItem("remainingTime");
+    return storedRemainingTime ? parseInt(storedRemainingTime, 10) : duration;
+  });
+  const [isRunning, setIsRunning] = useState(() => {
+    const storedIsRunning = localStorage.getItem("isRunning");
+    return storedIsRunning ? JSON.parse(storedIsRunning) : false;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("remainingTime", remainingTime.toString());
+    localStorage.setItem("isRunning", JSON.stringify(isRunning));
+  }, [remainingTime, isRunning]);
 
   useEffect(() => {
     let timer: number;
