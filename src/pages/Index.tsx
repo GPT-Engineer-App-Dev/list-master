@@ -4,6 +4,7 @@ import { FaPlus, FaTrash } from "react-icons/fa";
 import React from "react";
 import Sparkles from "../components/Sparkles";
 import PomodoroTimer from "../components/PomodoroTimer";
+import Spinner from "../components/Spinner";
 
 interface Todo {
   id: number;
@@ -88,6 +89,9 @@ const Index = () => {
           <PomodoroTimer />
         </Card>
       </VStack>
+      <Card p={8} width="100%" maxWidth="400px">
+        <Spinner />
+      </Card>
     </Flex>
   );
 };
