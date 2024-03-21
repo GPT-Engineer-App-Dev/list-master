@@ -5,6 +5,7 @@ import React from "react";
 import Sparkles from "../components/Sparkles";
 import PomodoroTimer from "../components/PomodoroTimer";
 import Spinner from "../components/Spinner";
+import Stopwatch from "../components/Stopwatch";
 
 interface Todo {
   id: number;
@@ -100,6 +101,9 @@ const Index = () => {
             Spinnin' out of control!
           </Heading>
           <Spinner />
+        </Card>
+        <Card p={8} width="100%">
+          <Stopwatch />
         </Card>
       </VStack>
     </Flex>
