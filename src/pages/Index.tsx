@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Heading, Input, Button, List, ListItem, IconButton, Flex, Spacer, useToast, Checkbox, Card, VStack } from "@chakra-ui/react";
+import { Box, Heading, Input, Button, List, ListItem, IconButton, Flex, Spacer, useToast, Checkbox, Card, SimpleGrid } from "@chakra-ui/react";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import React from "react";
 import Sparkles from "../components/Sparkles";
@@ -66,9 +66,9 @@ const Index = () => {
   };
 
   return (
-    <Flex minHeight="100vh" alignItems="center" justifyContent="center" bg="gray.100">
-      <VStack spacing={8} maxWidth="400px" width="100%">
-        <Card p={8} width="100%">
+    <Flex minHeight="100vh" alignItems="center" justifyContent="center" bg="gray.100" p={8}>
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8} maxWidth="1200px" width="100%">
+        <Card p={6}>
           <Heading mb={8} textAlign="center">
             Todo App
             <React.Suspense fallback={null}>
@@ -94,22 +94,22 @@ const Index = () => {
             ))}
           </List>
         </Card>
-        <Card p={8} width="100%">
+        <Card p={6}>
           <PomodoroTimer />
         </Card>
-        <Card p={8} width="100%">
+        <Card p={6}>
           <Heading size="md" mb={4}>
             Spinnin' out of control!
           </Heading>
           <Spinner />
         </Card>
-        <Card p={8} width="100%">
+        <Card p={6}>
           <Stopwatch />
         </Card>
-        <Card p={8} width="100%">
+        <Card p={6}>
           <QuoteGenerator />
         </Card>
-      </VStack>
+      </SimpleGrid>
     </Flex>
   );
 };
