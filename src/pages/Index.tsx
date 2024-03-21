@@ -89,6 +89,9 @@ const Index = () => {
           <PomodoroTimer />
         </Card>
         <Card p={8} width="100%">
+          <Heading size="md" mb={4}>
+            Spinnin' out of control!
+          </Heading>
           <Spinner />
         </Card>
       </VStack>
