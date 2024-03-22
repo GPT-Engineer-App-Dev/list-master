@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Button, Grid, Text } from "@chakra-ui/react";
+import { Box, Button, Grid, GridItem, Text } from "@chakra-ui/react";
 
 const TicTacToe: React.FC = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
@@ -46,11 +46,13 @@ const TicTacToe: React.FC = () => {
       <Text fontSize="xl" mb={4}>
         Tic Tac Toe
       </Text>
-      <Grid templateColumns="repeat(3, 1fr)" gap={4}>
+      <Grid templateColumns="repeat(3, 1fr)" gap={2}>
         {Array(9)
           .fill(null)
           .map((_, index) => (
-            <Box key={index}>{renderSquare(index)}</Box>
+            <GridItem key={index} colSpan={{ base: 3, sm: 1 }}>
+              {renderSquare(index)}
+            </GridItem>
           ))}
       </Grid>
       {winner && (
