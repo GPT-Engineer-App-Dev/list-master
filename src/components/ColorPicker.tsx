@@ -47,6 +47,7 @@ const ColorPicker: React.FC = () => {
           <Image src={`data:image/svg+xml;utf8,${encodeURIComponent(colorResult.swatchImg.svg)}`} alt={colorResult.name} mb={2} />
           <Text>Name: {colorResult.name}</Text>
           <Text>Hex: {colorResult.hex}</Text>
+          <Text>Hex: {colorResult.hex}</Text>
         </Box>
       )}
     </Box>
