@@ -16,7 +16,7 @@ const TicTacToe: React.FC = () => {
   };
 
   const renderSquare = (index: number) => (
-    <Button h="50px" w="50px" onClick={() => handleClick(index)}>
+    <Button h="100px" w="100px" onClick={() => handleClick(index)}>
       {board[index]}
     </Button>
   );
@@ -46,7 +46,7 @@ const TicTacToe: React.FC = () => {
       <Text fontSize="xl" mb={4}>
         Tic Tac Toe
       </Text>
-      <Grid templateColumns="repeat(3, 1fr)" gap={2}>
+      <Grid templateColumns="repeat(3, 1fr)" gap={4}>
         {Array(9)
           .fill(null)
           .map((_, index) => (
