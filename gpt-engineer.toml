@@ -3,3 +3,6 @@ build = "npm run build"
 
 [gptengineer-app]
 project_id = "86ddb597-0f9f-43b5-bcce-3a6f3af2696f"
+
+[[gptengineer-app.openapi]]
+url = "https://raw.githubusercontent.com/meodai/color-name-api/main/color-names-v1-OpenAPI.yml"
